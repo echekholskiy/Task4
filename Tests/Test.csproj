@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Task4\Forms.csproj" />
+    <ProjectReference Include="..\Forms\Forms.csproj" />
+    <ProjectReference Include="..\Task4\Task4.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,27 +15,36 @@ namespace Task4.Pages
                 nameof(OpenPageButton));
         private ITextBox Discount =>
             ElementFactory.GetTextBox(By.XPath("//div[@class='discount_pct']"), nameof(Discount));
-
         private ITextBox OriginalPrice => ElementFactory.GetTextBox(By.XPath("//div[@class='discount_original_price']"),
             nameof(OriginalPrice));
-
         private ITextBox FinalPrice => ElementFactory.GetTextBox(
             By.XPath("//div[@class='game_purchase_action_bg']//div[@class='discount_final_price']"),
             nameof(FinalPrice));
-
-        private ITextBox Name => ElementFactory.GetTextBox(By.XPath("//*[@id='appHubAppName']"), nameof(Name));
-
         private const string Day = "11";
         private const string Month = "January";
         private const string Year = "1994";
    
-        public GamePage(string gameName) 
-            : base(By.XPath($"//*[@id='appHubAppName' and text()='{gameName}']"), nameof(GamePage))
+        public GamePage() 
+            : base(By.XPath("//div[@id='appHubAppName']"), nameof(GamePage))
         {
             if (AgeDay.State.IsDisplayed)
             {
                 PassAgeGate();
             }
+        }
+
+        public Game GetGameModel()
+        {
+            var discount = Discount.Text;
+            var originalPrice = OriginalPrice.Text;
+            var finalPrice = FinalPrice.Text.Replace(" USD", "");
+            return new Game(discount, originalPrice, finalPrice);
+        }
+
+        public void PageIsOpened(string gameName)
+        {
+            ElementFactory.GetTextBox(By.XPath($"//*[@id='appHubAppName' and contains(text(), '{gameName}')]"),
+                gameName);
         }
 
         private void SelectAgeDay(string day)
@@ -64,15 +73,6 @@ namespace Task4.Pages
             SelectAgeMonth(Month);
             SelectAgeYear(Year);
             ClickOpenPageButton();
-        }
-
-        public Game GetGameModel()
-        {
-            var name = Name.Text;
-            var discount = Discount.Text;
-            var originalPrice = OriginalPrice.Text;
-            var finalPrice = FinalPrice.Text.Replace(" USD", "");
-            return new Game(discount, originalPrice, finalPrice);
         }
     }
 }

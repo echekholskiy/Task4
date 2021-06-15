@@ -10,13 +10,11 @@ namespace Test.Hooks
     [Binding]
     public class ScreenshotHooks
     {
-        private readonly ScreenshotProvider screenshotProvider;
-        private readonly ScenarioContext scenarioContext;
+        private readonly ScreenshotProvider _screenshotProvider;
 
-        public ScreenshotHooks(ScenarioContext scenarioContext, ScreenshotProvider screenshotProvider)
+        public ScreenshotHooks(ScreenshotProvider screenshotProvider)
         {
-            this.scenarioContext = scenarioContext;
-            this.screenshotProvider = screenshotProvider;
+            this._screenshotProvider = screenshotProvider;
         }
 
         [AfterScenario(Order = 0)]
@@ -24,7 +22,7 @@ namespace Test.Hooks
         {
             if (AqualityServices.IsBrowserStarted)
             {
-                var pathToScreenshot = screenshotProvider.TakeScreenshot();
+                var pathToScreenshot = _screenshotProvider.TakeScreenshot();
                 TestContext.AddTestAttachment(pathToScreenshot);
                 AllureLifecycle.Instance.AddAttachment(pathToScreenshot, "Screenshot");
                 AqualityTrackingLifecycle.Instance.AddAttachment(pathToScreenshot);

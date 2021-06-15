@@ -2,19 +2,18 @@
 using FluentAssertions;
 using Task4.Configuration;
 using Task4.Pages;
-using Task4.Utils;
 using TechTalk.SpecFlow;
 
-namespace Tests.StepDefinitions
+namespace Test.StepDefinitions
 {
     [Binding]
     public class MainPageSteps
     {
-        private readonly MainPage mainPage;
+        private readonly MainPage _mainPage;
 
         public MainPageSteps(MainPage mainPage)
         {
-            this.mainPage = mainPage;
+            this._mainPage = mainPage;
         }
 
         [When(@"I open Main page")]
@@ -26,7 +25,7 @@ namespace Tests.StepDefinitions
         [Then(@"Main page is opened")]
         public void MainPageIsOpened()
         {
-            var isOpened = mainPage.State.WaitForDisplayed();
+            var isOpened = _mainPage.State.WaitForDisplayed();
             isOpened
                 .Should()
                 .BeTrue("Main page is opened");
@@ -35,13 +34,13 @@ namespace Tests.StepDefinitions
         [When(@"I navigate categories in the top menu")]
         public void WhenNavigateCategoriesInTopMenu()
         {
-            mainPage.HoverMouseOverCategories();
+            _mainPage.HoverMouseOverCategories();
         }
 
-        [Given(@"Click Action games")]
+        [When(@"Click Action games")]
         public void ClickActionGames()
         {
-            mainPage.ClickActionGenre();
+            _mainPage.ClickActionGenre();
         }
     }
 }

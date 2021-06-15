@@ -14,12 +14,6 @@
     <None Update="Resources\appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Environment\Prod\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\Environment\Stage\config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="Resources\settings.azure.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

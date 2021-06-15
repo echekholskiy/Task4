@@ -1,6 +1,5 @@
 ﻿using System.Text.RegularExpressions;
 using Allure.Commons;
-using AqualityTracking.Integrations.Core;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -9,28 +8,22 @@ namespace Test.Hooks
     [Binding]
     public class PluginsHooks
     {
-        private readonly ScenarioContext context;
+        private readonly ScenarioContext _context;
 
         public PluginsHooks(ScenarioContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         [AfterScenario(Order = -1)]
         public void UpdateAllureTestCaseName()
         {
-            context.TryGetValue(out TestResult testresult);
+            _context.TryGetValue(out TestResult testresult);
             AllureLifecycle.Instance.UpdateTestCase(testresult.uuid, testCase =>
             {
                 testCase.name += GetScenarioNameSuffix();
                 testCase.historyId = TestContext.CurrentContext.Test.FullName;
             });
-        }
-
-        [BeforeScenario(Order = -1)]
-        public void UpdateAqualityTrackingTestCaseName()
-        {
-            AqualityTrackingLifecycle.Instance.UpdateCurrentTest(test => test.Name += GetScenarioNameSuffix());
         }
 
         private string GetScenarioNameSuffix()

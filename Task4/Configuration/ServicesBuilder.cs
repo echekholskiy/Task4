@@ -7,8 +7,8 @@ namespace Task4.Configuration
 {
     public static class ServicesBuilder
     {
-        private static readonly Lazy<IConfiguration> SConfiguration;
         public static IConfiguration Configuration => SConfiguration.Value;
+        private static readonly Lazy<IConfiguration> SConfiguration;
 
         static ServicesBuilder()
         {

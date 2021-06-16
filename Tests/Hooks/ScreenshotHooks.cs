@@ -1,6 +1,5 @@
 ﻿using Allure.Commons;
 using Aquality.Selenium.Browsers;
-using AqualityTracking.Integrations.Core;
 using NUnit.Framework;
 using Task4.Utils;
 using TechTalk.SpecFlow;
@@ -25,7 +24,6 @@ namespace Test.Hooks
                 var pathToScreenshot = _screenshotProvider.TakeScreenshot();
                 TestContext.AddTestAttachment(pathToScreenshot);
                 AllureLifecycle.Instance.AddAttachment(pathToScreenshot, "Screenshot");
-                AqualityTrackingLifecycle.Instance.AddAttachment(pathToScreenshot);
             }
         }
     }

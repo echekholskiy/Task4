@@ -11,9 +11,9 @@ namespace Task4.Utils
         public string TakeScreenshot()
         {
             var image = GetImage();
-            var directory = Path.Combine(Environment.CurrentDirectory, "screenshots");
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "screenshots");
             EnsureDirectoryExists(directory);
-            var screenshotName = $"{GetType().Name}_{DateTime.Now:yyyyMMdd_HHmmss}_{Guid.NewGuid().ToString("n").Substring(0, 5)}.png";
+            var screenshotName = $"{DateTime.Now:yyyyMMdd_HHmmss}.png";
             var path = Path.Combine(directory, screenshotName);
             image.Save(path, ImageFormat.Png);
             return path;

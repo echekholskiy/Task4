@@ -18,8 +18,8 @@ namespace Test.Hooks
         [AfterScenario(Order = -1)]
         public void UpdateAllureTestCaseName()
         {
-            _context.TryGetValue(out TestResult testresult);
-            AllureLifecycle.Instance.UpdateTestCase(testresult.uuid, testCase =>
+            _context.TryGetValue(out TestResult testResult);
+            AllureLifecycle.Instance.UpdateTestCase(testResult.uuid, testCase =>
             {
                 testCase.name += GetScenarioNameSuffix();
                 testCase.historyId = TestContext.CurrentContext.Test.FullName;

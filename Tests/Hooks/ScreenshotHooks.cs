@@ -23,7 +23,7 @@ namespace Test.Hooks
             {
                 var pathToScreenshot = _screenshotProvider.TakeScreenshot();
                 TestContext.AddTestAttachment(pathToScreenshot);
-                AllureLifecycle.Instance.AddAttachment(pathToScreenshot, "Screenshot");
+                AllureLifecycle.Instance.AddAttachment("Screenshot", "image/png", pathToScreenshot);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Task4.Configuration
 
         private static IConfiguration BuildConfiguration()
         {
-            var basePath = DirectoryManager.GetResourceFolderPath();
+            var basePath = Path.GetFullPath("Resources");
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(basePath)

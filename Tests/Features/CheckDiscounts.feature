@@ -1,5 +1,5 @@
 ﻿Feature: CheckDiscounts
-	Simple calculator for adding two numbers
+	Methods for testing game discounts
 
 @mytag
 Scenario: Check disounts

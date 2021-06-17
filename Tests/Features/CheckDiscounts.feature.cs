@@ -129,13 +129,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.When("I Click the game with the lowest discount", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "Month",
+                            "January"});
+                table1.AddRow(new string[] {
+                            "Year",
+                            "1994"});
+                table1.AddRow(new string[] {
+                            "Day",
+                            "11"});
 #line 18
+ testRunner.And("Then enter the correct age on the Rated content if it\'s shown", ((string)(null)), table1, "And ");
+#line hidden
+#line 23
  testRunner.Then("Game page is opened", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
+#line 25
  testRunner.When("I check discount of the game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 26
  testRunner.Then("Then discount rate, initial and discounted prices equals to corresponding values", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

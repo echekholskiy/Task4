@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Task4.Models;
 using Task4.Pages;
 using TechTalk.SpecFlow;
 
@@ -12,6 +13,12 @@ namespace Test.StepDefinitions
         public GamePageSteps(GamePage gamePage)
         {
             this._gamePage = gamePage;
+        }
+
+        [When(@"Enter the correct age on the Rated content if it's shown")]
+        public void WhenEnterCorrectAge(Birth birth)
+        {
+            _gamePage.PassAgeGate(birth.Day, birth.Month, birth.Year);
         }
 
         [When(@"I check discount of the game")]

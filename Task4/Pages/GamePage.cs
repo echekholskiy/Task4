@@ -20,17 +20,10 @@ namespace Task4.Pages
         private ITextBox FinalPrice => ElementFactory.GetTextBox(
             By.XPath("//div[@class='game_purchase_action_bg']//div[@class='discount_final_price']"),
             nameof(FinalPrice));
-        private const string Day = "11";
-        private const string Month = "January";
-        private const string Year = "1994";
-   
+
         public GamePage() 
             : base(By.XPath("//div[@id='appHubAppName']"), nameof(GamePage))
         {
-            if (AgeDay.State.IsDisplayed)
-            {
-                PassAgeGate();
-            }
         }
 
         public Game GetGameModel()
@@ -38,7 +31,13 @@ namespace Task4.Pages
             var discount = Discount.Text;
             var originalPrice = OriginalPrice.Text;
             var finalPrice = FinalPrice.Text.Replace(" USD", "");
-            return new Game(discount, originalPrice, finalPrice);
+
+            return new Game()
+            {
+                GameDiscount = discount,
+                OriginalPrice = originalPrice,
+                FinalPrice = finalPrice
+            };
         }
 
         public void PageIsOpened(string gameName)
@@ -67,11 +66,12 @@ namespace Task4.Pages
             OpenPageButton.Click();
         }
 
-        private void PassAgeGate()
+        public void PassAgeGate(string day, string month, string year)
         {
-            SelectAgeDay(Day);
-            SelectAgeMonth(Month);
-            SelectAgeYear(Year);
+            if (!AgeDay.State.IsDisplayed) return;
+            SelectAgeDay(day);
+            SelectAgeMonth(month);
+            SelectAgeYear(year);
             ClickOpenPageButton();
         }
     }

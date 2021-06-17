@@ -14,34 +14,36 @@ namespace Task4.Elements
             By.XPath("//*[@id='TopSellersTable']//a[.//div[contains(@class, 'discount_pct')]]"),
             nameof(GameWithDiscountTextBoxes), expectedCount: ElementsCount.MoreThenZero);
         private static IElementFactory ElementFactory => AqualityServices.Get<IElementFactory>();
-        private readonly ITextBox _gameWithLowestDiscount;
 
         public GameElement()
         {
-            _gameWithLowestDiscount = GetGameWithLowestDiscount();
         }
 
         public string GetNameOfGameWithLowestDiscount()
         {
-            ElementFactory.GetButton(By.XPath("//*[@id='TopSellers_links']//span[text()= '5 ']"), "dsf").Click();
-            return _gameWithLowestDiscount.FindChildElement<ITextBox>(By.XPath("//div[@class='tab_item_name']")).Text;
+            return GetGameWithLowestDiscount().FindChildElement<ITextBox>(By.XPath("//div[@class='tab_item_name']")).Text;
         }
 
         public Game GetDiscountModel()
         {
-            var discount = _gameWithLowestDiscount
+            var discount = GetGameWithLowestDiscount()
                 .FindChildElement<ITextBox>(By.XPath("//div[@class='discount_pct']")).Text;
-            var originalPrice = _gameWithLowestDiscount
+            var originalPrice = GetGameWithLowestDiscount()
                 .FindChildElement<ITextBox>(By.XPath("//div[@class='discount_original_price']")).Text;
-            var finalPrice = _gameWithLowestDiscount
+            var finalPrice = GetGameWithLowestDiscount()
                 .FindChildElement<ITextBox>(By.XPath("//div[@class='discount_final_price']")).Text;
 
-            return new Game(discount, originalPrice, finalPrice);
+            return new Game()
+            {
+                GameDiscount = discount,
+                OriginalPrice = originalPrice,
+                FinalPrice = finalPrice
+            };
         }
 
         public void ClickElementWithLowestDiscount()
         {
-            _gameWithLowestDiscount.Click();
+            GetGameWithLowestDiscount().Click();
         }
 
         private string GetMinDiscount()

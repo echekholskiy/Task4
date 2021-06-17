@@ -15,6 +15,11 @@ Scenario: Check disounts
 
 	Given The game with the lowest discount
 	When I Click the game with the lowest discount
+	And Enter the correct age on the Rated content if it's shown
+	|Name |Value  |
+	|Month|January|
+	|Year |1994   |
+	|Day  |11     |
 	Then Game page is opened
 
 	When I check discount of the game

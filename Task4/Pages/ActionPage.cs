@@ -13,7 +13,7 @@ namespace Task4.Pages
             ElementFactory.GetButton(By.XPath("//*[@id='tab_select_TopSellers']"), nameof(TopSellersTab));
         private ITextBox TopSellersTable =>
             ElementFactory.GetTextBox(By.XPath("//*[@id='tab_content_TopSellers']"), nameof(TopSellersTable));
-        private readonly Lazy<GameElement> _gameElement = new();
+        private readonly GameElement _gameElement = new();
 
         public ActionPage() : base(By.XPath("//*[@class='pageheader' and contains(text(), 'Action')]"),
             nameof(ActionPage))
@@ -32,17 +32,17 @@ namespace Task4.Pages
 
         public void ClickGameWithLowestDiscount()
         {
-            _gameElement.Value.ClickElementWithLowestDiscount();
+            _gameElement.ClickElementWithLowestDiscount();
         }
 
         public string GetNameOfGameWithLowestDiscount()
         {
-            return _gameElement.Value.GetNameOfGameWithLowestDiscount();
+            return _gameElement.GetNameOfGameWithLowestDiscount();
         }
 
         public Game GetDiscountGame()
         {
-            return _gameElement.Value.GetDiscountModel();
+            return _gameElement.GetDiscountModel();
         } 
     }
 }

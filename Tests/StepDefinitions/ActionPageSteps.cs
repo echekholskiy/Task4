@@ -8,10 +8,12 @@ namespace Test.StepDefinitions
     public class ActionPageSteps
     {
         private readonly ActionPage _actionPage;
+        private readonly ScenarioContext _scenarioContext;
 
-        public ActionPageSteps(ActionPage actionPage)
+        public ActionPageSteps(ActionPage actionPage, ScenarioContext scenarioContext)
         {
             this._actionPage = actionPage;
+            _scenarioContext = scenarioContext;
         }
 
         [Then(@"Action page is opened")]
@@ -26,8 +28,8 @@ namespace Test.StepDefinitions
         [Given(@"The game with the lowest discount")]
         public void WhenIGetGameWithLowestDiscount()
         {
-            ScenarioContext.Current.Add("GameName", _actionPage.GetNameOfGameWithLowestDiscount());
-            ScenarioContext.Current.Add("Game", _actionPage.GetDiscountGame()); 
+            _scenarioContext.Add("GameName", _actionPage.GetNameOfGameWithLowestDiscount());
+            _scenarioContext.Add("Game", _actionPage.GetDiscountGame());
         }
 
         [When(@"I Click the game with the lowest discount")]
@@ -36,10 +38,10 @@ namespace Test.StepDefinitions
             _actionPage.ClickGameWithLowestDiscount();
         }
 
-        [When(@"I click Top Selling tab")]
-        public void WhenIClickTopSellingTab()
+        [When(@"I click (.*) tab")]
+        public void WhenIClickTopSellingTab(string tab)
         {
-            _actionPage.ClickTopSellersTab();
+            _actionPage.ClickTab(tab);
         }
 
         [Then(@"Top selling tab is opened")]

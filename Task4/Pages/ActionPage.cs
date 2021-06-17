@@ -1,5 +1,4 @@
-﻿using System;
-using Aquality.Selenium.Elements.Interfaces;
+﻿using Aquality.Selenium.Elements.Interfaces;
 using Aquality.Selenium.Forms;
 using OpenQA.Selenium;
 using Task4.Elements;
@@ -9,8 +8,6 @@ namespace Task4.Pages
 {
     public class ActionPage : Form
     {
-        private IButton TopSellersTab =>
-            ElementFactory.GetButton(By.XPath("//*[@id='tab_select_TopSellers']"), nameof(TopSellersTab));
         private ITextBox TopSellersTable =>
             ElementFactory.GetTextBox(By.XPath("//*[@id='tab_content_TopSellers']"), nameof(TopSellersTable));
         private readonly GameElement _gameElement = new();
@@ -20,9 +17,9 @@ namespace Task4.Pages
         {
         }
 
-        public void ClickTopSellersTab()
+        public void ClickTab(string tab)
         {
-            TopSellersTab.Click();
+            ElementFactory.GetButton(By.XPath($"//*[@id='tab_select_{tab}']"), "Tab").Click();
         }
 
         public bool TopSellersTableIsSelected()

@@ -37,10 +37,10 @@ namespace Test.StepDefinitions
             _mainPage.HoverMouseOverCategories();
         }
 
-        [When(@"Click Action games")]
-        public void ClickActionGames()
+        [When(@"Click (.*) games")]
+        public void ClickActionGames(string genre)
         {
-            _mainPage.ClickActionGenre();
+            _mainPage.ClickGenre(genre);
         }
     }
 }

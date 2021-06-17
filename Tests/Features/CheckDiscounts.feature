@@ -10,7 +10,7 @@ Scenario: Check disounts
 	And Click Action games
 	Then Action page is opened
 
-	When I click Top Selling tab
+	When I click TopSellers tab
 	Then Top selling tab is opened
 
 	Given The game with the lowest discount

@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Action page is opened", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.When("I click Top Selling tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I click TopSellers tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
  testRunner.Then("Top selling tab is opened", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Day",
                             "11"});
 #line 18
- testRunner.And("Then enter the correct age on the Rated content if it\'s shown", ((string)(null)), table1, "And ");
+ testRunner.And("Enter the correct age on the Rated content if it\'s shown", ((string)(null)), table1, "And ");
 #line hidden
 #line 23
  testRunner.Then("Game page is opened", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

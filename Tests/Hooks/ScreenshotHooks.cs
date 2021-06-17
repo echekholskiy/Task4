@@ -17,9 +17,9 @@ namespace Test.Hooks
         }
 
         [AfterScenario(Order = 0)]
-        public void TakeScreenshot()
+        public void TakeScreenshot(ScenarioContext scenarioContext)
         {
-            if (AqualityServices.IsBrowserStarted)
+            if (scenarioContext.ScenarioExecutionStatus == ScenarioExecutionStatus.TestError)
             {
                 var pathToScreenshot = _screenshotProvider.TakeScreenshot();
                 TestContext.AddTestAttachment(pathToScreenshot);

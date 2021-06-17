@@ -9,10 +9,12 @@ namespace Test.StepDefinitions
     public class GamePageSteps
     {
         private readonly GamePage _gamePage;
+        private readonly ScenarioContext _scenarioContext;
 
-        public GamePageSteps(GamePage gamePage)
+        public GamePageSteps(GamePage gamePage, ScenarioContext scenarioContext)
         {
             this._gamePage = gamePage;
+            _scenarioContext = scenarioContext;
         }
 
         [When(@"Enter the correct age on the Rated content if it's shown")]
@@ -24,21 +26,22 @@ namespace Test.StepDefinitions
         [When(@"I check discount of the game")]
         public void WhenCheckGameDiscount()
         {
-           ScenarioContext.Current.Add("InnerGame", _gamePage.GetGameModel());
+            _scenarioContext.Add("InnerGame", _gamePage.GetGameModel());
         }
 
         [Then(@"Then discount rate, initial and discounted prices equals to corresponding values")]
         public void ThenDiscountIsEqual()
         {
-            var expectedDiscount = ScenarioContext.Current["InnerGame"];
-            var actualDiscount = ScenarioContext.Current["Game"];
+            var expectedDiscount = _scenarioContext["InnerGame"];
+            var actualDiscount = _scenarioContext["Game"];
             actualDiscount.Should().BeEquivalentTo(expectedDiscount, "Discount and prices are equal");
         }
 
         [Then(@"Game page is opened")]
         public void ThenGamePageOpened()
         {
-            _gamePage.PageIsOpened(ScenarioContext.Current["GameName"].ToString());
+            _gamePage.PageIsOpened(_scenarioContext["GameName"].ToString()).Should()
+                .BeTrue("Game page is opened");
         }
     }
 }

@@ -8,8 +8,6 @@ namespace Task4.Pages
     {
         private IButton CategoriesButton =>
             ElementFactory.GetButton(By.XPath("//*[@id='genre_tab']"), nameof(CategoriesButton));
-        private IButton ActionButton => ElementFactory.GetButton(
-            By.XPath("//*[@data-genre-group='action' and contains(@class, 'subheader')]//a"), nameof(ActionButton));
 
         public MainPage() : base(By.XPath("//*[@class='home_ctn']"), "MainPage")
         {
@@ -20,9 +18,11 @@ namespace Task4.Pages
             CategoriesButton.MouseActions.MoveToElement();
         }
 
-        public void ClickActionGenre()
+        public void ClickGenre(string genre)
         {
-            ActionButton.Click();
+            ElementFactory.GetButton(
+                By.XPath($"//div[contains(@class, 'popup_menu_subheader')]//a[contains(text(), '{genre}')]"),
+                "GenreButton").Click();
         }
     }
 }

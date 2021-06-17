@@ -40,10 +40,10 @@ namespace Task4.Pages
             };
         }
 
-        public void PageIsOpened(string gameName)
+        public bool PageIsOpened(string gameName)
         {
-            ElementFactory.GetTextBox(By.XPath($"//*[@id='appHubAppName' and contains(text(), '{gameName}')]"),
-                gameName);
+            return ElementFactory.GetTextBox(By.XPath($"//*[@id='appHubAppName' and contains(text(), '{gameName}')]"),
+                gameName).State.WaitForDisplayed();
         }
 
         private void SelectAgeDay(string day)
